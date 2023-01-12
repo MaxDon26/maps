@@ -4,17 +4,24 @@ import {
   Polygon,
   ZoomControl,
   Placemark,
+  TypeSelector,
 } from "@pbe/react-yandex-maps";
 import React from "react";
 import { useMaps } from "../hooks/useMaps";
 import { nanoid } from "nanoid";
+import SearchForm from "./searchForm";
 
 const Maps = React.memo(() => {
-  const { defaultState, polygons, lables } = useMaps();
+  const { defaultState, polygons, lables, state } = useMaps();
 
   return (
     <YMaps>
-      <Map defaultState={defaultState} width="100vw" height="100vh">
+      <Map
+        defaultState={defaultState}
+        state={state.currentCenter}
+        width="100vw"
+        height="100vh"
+      >
         {polygons.map((polygon) => (
           <Polygon
             key={nanoid()}
@@ -37,6 +44,29 @@ const Maps = React.memo(() => {
           />
         ))}
         <ZoomControl options={{ float: "right" }} />
+        <TypeSelector
+          options={{
+            float: "right",
+          }}
+        />
+        {
+          <SearchForm>
+            {" "}
+            {lables.map((label) => (
+              <p
+                style={{ cursor: "pointer", borderBottom: "1px solid #999" }}
+                onClick={() =>
+                  state.setCurrent((prev) => ({
+                    ...prev,
+                    center: label.coords,
+                  }))
+                }
+              >
+                {label.name}
+              </p>
+            ))}
+          </SearchForm>
+        }
       </Map>
     </YMaps>
   );

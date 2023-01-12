@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { MapsProvider } from "./hooks/useMaps";
+import "./styles/style.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,6 +1,6 @@
 import React from "react";
 import Spinner from "./components/loader";
-import Maps from "./components/Map";
+import Maps from "./components/map";
 import { useMaps } from "./hooks/useMaps";
 
 function App() {

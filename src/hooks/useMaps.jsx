@@ -12,14 +12,17 @@ export const MapsProvider = ({ children }) => {
   const [coord, setCoord] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [defaultState, setDefault] = useState(null);
+  const [currentCenter, setCurrent] = useState(null);
 
   const initMap = async () => {
     const map = await fetchMap();
-    setCoord(map);
-    setDefault({
+    const initial = {
       center: parse(map[0].Location).Center,
       zoom: 13,
-    });
+    };
+    setCoord(map);
+    setDefault(initial);
+    setCurrent(initial);
     setLoading(false);
   };
 
@@ -42,6 +45,7 @@ export const MapsProvider = ({ children }) => {
           defaultState,
           polygons,
           lables,
+          state: { currentCenter, setCurrent },
         }}
       >
         {children}

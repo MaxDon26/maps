@@ -2,7 +2,7 @@
   "name": "card",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://maxdon26.tmweb.ru/maps/",
+  "homepage": "http://maxdon26.tmweb.ru/maps/",
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.2.2",
     "@testing-library/jest-dom": "^5.16.5",
